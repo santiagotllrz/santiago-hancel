@@ -348,13 +348,19 @@ body:has(dialog[open]) {
   content: "";
   position: absolute;
   inset: 0;
-  background: var(--accent);
+  /* White by default; the accent only appears while the link is touched or hovered. */
+  background: currentColor;
   transform: scaleX(0);
   transform-origin: 0;
-  transition: transform 0.32s var(--ease-expo);
+  transition:
+    transform 0.32s var(--ease-expo),
+    background-color 0.2s;
 }
 .poster-link[data-active="true"] .poster-rule::after {
   transform: scaleX(1);
+}
+.poster-link:is(:hover, :active, :focus-visible) .poster-rule::after {
+  background: var(--accent);
 }
 .poster-arrow {
   display: inline-block;
@@ -435,6 +441,7 @@ body:has(dialog[open]) {
 .row-link:hover .poster-rule::after,
 .row-link:focus-visible .poster-rule::after {
   transform: scaleX(1);
+  background: var(--accent);
 }
 .row-link:hover .poster-arrow,
 .row-link:focus-visible .poster-arrow {

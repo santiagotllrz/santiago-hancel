@@ -6,6 +6,8 @@ import { Icon } from "./icon";
 
 const cell =
   "min-w-0 border-rule border-b py-1.5 [overflow-wrap:anywhere] md:truncate md:py-1 md:[overflow-wrap:normal] rv-rise";
+/** Same row cell, but long text wraps instead of being cut with an ellipsis. */
+const wrapCell = "min-w-0 border-rule border-b py-1.5 text-pretty md:py-1 rv-rise";
 
 /**
  * Desktop: one ledger row per project (link, description, category).
@@ -70,8 +72,8 @@ export function ProjectsList({ projects }: { projects: Project[] }) {
             >
               {p.name}
             </a>
-            <span className={`${cell} hidden md:col-span-4 md:block`}>{p.description}</span>
-            <span className={`${cell} hidden text-muted md:col-span-1 md:block`}>{p.category}</span>
+            <span className={`${wrapCell} hidden md:col-span-4 md:block`}>{p.description}</span>
+            <span className={`${wrapCell} hidden text-muted md:col-span-1 md:block`}>{p.category}</span>
           </div>
         );
       })}

@@ -231,14 +231,14 @@ export const projects: Project[] = [
     year: "26",
     name: "Índice Agro",
     href: "https://www.instagram.com/indiceagro.co/",
-    description: "Comunidad sobre el agro colombiano en Instagram.",
-    category: "Comunidad",
+    description: "Medio sobre el agro colombiano en Instagram. impulsado con AI y Hancel content",
+    category: "Comunidad y media",
   },
   {
     year: "26",
     name: "app.hancel.xyz",
     href: "https://app.hancel.xyz",
-    description: "Motor de contenido con IA que impulsa Índice Agro.",
+    description: "Motor de contenido con IA y agentes para nuestras redes y las de otros fundadores.",
     category: "Herramienta de IA",
   },
   {
