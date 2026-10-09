@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import type { Job } from "@/lib/data";
+import { PhotoFill } from "./photo-fill";
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
@@ -24,7 +24,7 @@ export function WorkPoster({ jobs }: { jobs: Job[] }) {
               i === active ? "opacity-100" : "opacity-0"
             }`}
           >
-            <Image src={j.photos[0].src} alt="" fill sizes="100vw" className="object-cover" />
+            <PhotoFill photo={j.cover} sizes="100vw" />
           </div>
         ))}
       </div>

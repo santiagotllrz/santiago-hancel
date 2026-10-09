@@ -138,8 +138,15 @@ export default async function WorkPage(props: PageProps<"/work/[slug]">) {
                 <ul className="grid gap-x-[var(--gutter)] gap-y-10 sm:grid-cols-2">
                   {job.projects.map((p, n) => (
                     <li key={p.name} className="rv-rise flex flex-col gap-3" style={i(n + 1)}>
-                      <div className="relative aspect-[3/2] overflow-hidden bg-foreground/5">
-                        <Image src={p.photo.src} alt={p.photo.alt} fill sizes="(min-width: 768px) 30vw, 100vw" className="object-cover" />
+                      <div className="relative aspect-[16/9] overflow-hidden border border-rule bg-foreground/5">
+                        <Image
+                          src={p.photo.src}
+                          alt={p.photo.alt}
+                          fill
+                          sizes="(min-width: 768px) 30vw, 100vw"
+                          className="object-cover"
+                          style={p.photo.position ? { objectPosition: p.photo.position } : undefined}
+                        />
                       </div>
                       <div className="flex flex-col gap-1">
                         <h3 className="font-display text-xl font-semibold tracking-[-0.02em]">

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
+import { PhotoFill } from "@/components/photo-fill";
 import { ContactSection } from "@/components/sections";
 import { SiteHeader } from "@/components/site-header";
 import { jobs } from "@/lib/data";
@@ -64,12 +64,10 @@ export default function WorkIndex() {
                     <span className="text-muted">{job.period}</span>
                   </span>
                   <span className="relative hidden aspect-[3/2] overflow-hidden bg-foreground/5 md:col-span-3 md:block">
-                    <Image
-                      src={job.photos[0].src}
-                      alt=""
-                      fill
+                    <PhotoFill
+                      photo={job.cover}
                       sizes="25vw"
-                      className="object-cover grayscale transition-[filter,scale] duration-500 ease-out group-hover:scale-[1.03] group-hover:grayscale-0"
+                      className="grayscale transition-[filter,scale] duration-500 ease-out group-hover:scale-[1.03] group-hover:grayscale-0"
                     />
                   </span>
                   <span aria-hidden="true" className="poster-rule" />

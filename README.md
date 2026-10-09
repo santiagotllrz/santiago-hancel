@@ -13,12 +13,12 @@ npm run build    # build de producción
 ## Dónde editar
 
 - **Contenido** (textos, trabajos, proyectos, about, links de contacto): `lib/data.ts`
-- **Imágenes**: `public/images/` — son fotos de relleno de Pexels (créditos en `public/images/CREDITS.json`). Reemplázalas manteniendo el mismo nombre de archivo o cambia la ruta en `lib/data.ts`.
-  - `me/` → imágenes que rotan dentro del nombre en el hero
-  - `work/<empresa>/` → fondo del póster de Work, galería y proyectos destacados
+- **Imágenes**: `public/images/` — las de `about/` son de relleno de Pexels (créditos en `public/images/CREDITS.json`). Reemplázalas manteniendo el mismo nombre de archivo o cambia la ruta en `lib/data.ts`.
+  - `me/` y fotos de `work/` → imágenes que rotan dentro del nombre en el hero (`heroImages` en `lib/data.ts`)
+  - `work/<empresa>/` → foto principal (`cover`), galería y proyectos destacados
   - `about/` → galería de la página About
 - **Estilos y animaciones**: `app/globals.css`
-- **Logo / favicon**: `components/logo.tsx` y `app/icon.svg`
+- **Logo / favicon**: `public/logo.png`, `app/icon.png` y `app/apple-icon.png`
 
 ## Estructura
 

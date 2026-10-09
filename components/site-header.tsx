@@ -6,7 +6,7 @@ export function SiteHeader() {
   return (
     <header className="page-grid items-center overflow-x-clip text-[13px] font-medium md:text-sm">
       <Link className="col-span-2 flex items-center" href="/">
-        <Logo className="size-9" />
+        <Logo className="h-8 w-auto" />
       </Link>
       <nav
         aria-label="Sitio"

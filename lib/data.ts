@@ -6,6 +6,11 @@ export type Photo = {
   alt: string;
   /** "portrait" ocupa dos filas en las tiras de fotos, "landscape" dos columnas. */
   shape?: "landscape" | "portrait" | "big";
+  /** "contain" muestra la imagen completa sobre el color `bg` (útil para logos). */
+  fit?: "cover" | "contain";
+  bg?: string;
+  /** object-position CSS, p. ej. "left top" para capturas de pantalla. */
+  position?: string;
 };
 
 export type FeaturedProject = {
@@ -27,6 +32,9 @@ export type Job = {
   highlights: string[];
   stack: string[];
   projects: FeaturedProject[];
+  /** Foto principal: fondo del póster en el home y miniatura en /work. */
+  cover: Photo;
+  /** Galería de la página del trabajo. */
   photos: Photo[];
 };
 
@@ -55,17 +63,16 @@ export const site = {
     "Soy AI product & software engineer. Construyo software y productos con [IA|🤖] y [agentes|🦾], y me encanta estar en todo el proceso de creación, siempre en modo [fundador|🚀] con todo lo que toco. Ahora mismo estoy construyendo algo propio, en [stealth|🥷]. Cuando no estoy construyendo, me encuentras [caminando|🚶], en el [campo|🌾] o de [excursión|🥾].",
 };
 
-/** Imágenes que rotan dentro del nombre en el hero. */
-export const heroImages: string[] = [
-  "/images/me/01-laptop.jpg",
-  "/images/work/colombiatech/01-stage.jpg",
-  "/images/me/02-hiking.jpg",
-  "/images/work/plogy/01-code.jpg",
-  "/images/me/03-countryside.jpg",
-  "/images/work/colombiatech/02-crowd.jpg",
-  "/images/me/04-walking.jpg",
-  "/images/work/bbraun/01-office.jpg",
-  "/images/me/05-andes.jpg",
+/**
+ * Imágenes que rotan dentro del nombre en el hero (se muestran en blanco y negro).
+ * `ms` es cuánto tiempo se queda cada una.
+ */
+export const heroImages: { src: string; ms: number }[] = [
+  { src: "/images/me/santiago.jpg", ms: 2600 },
+  { src: "/images/work/colombiatech/ct-1.jpg", ms: 900 },
+  { src: "/images/work/colombiatech/ct-2.jpg", ms: 900 },
+  { src: "/images/work/plogy/plogy-1.jpg", ms: 900 },
+  { src: "/images/work/plogy/plogy-2.jpg", ms: 900 },
 ];
 
 export const jobs: Job[] = [
@@ -111,20 +118,19 @@ export const jobs: Job[] = [
         name: "App Colombia Tech Fest",
         description:
           "La primera app oficial del festival, con más de 3.000 usuarios activos.",
-        photo: { src: "/images/work/colombiatech/02-crowd.jpg", alt: "App Colombia Tech Fest" },
+        photo: { src: "/images/work/colombiatech/app-cft.jpg", alt: "App Colombia Tech Fest" },
       },
       {
         name: "Sponsors Hub CTF",
         description:
           "Portal de patrocinadores con onboarding, entregables y gestión de agenda.",
-        photo: { src: "/images/work/colombiatech/04-office.jpg", alt: "Sponsors Hub" },
+        photo: { src: "/images/work/colombiatech/sponsor-hub.png", alt: "Sponsors Hub", position: "left top" },
       },
     ],
+    cover: { src: "/images/work/colombiatech/ct-2.jpg", alt: "Colombia Tech Fest" },
     photos: [
-      { src: "/images/work/colombiatech/01-stage.jpg", alt: "Escenario", shape: "landscape" },
-      { src: "/images/work/colombiatech/02-crowd.jpg", alt: "Festival", shape: "landscape" },
-      { src: "/images/work/colombiatech/03-team.jpg", alt: "Equipo", shape: "landscape" },
-      { src: "/images/work/colombiatech/04-office.jpg", alt: "Oficina", shape: "landscape" },
+      { src: "/images/work/colombiatech/ct-1.jpg", alt: "AI Summit", shape: "portrait" },
+      { src: "/images/work/colombiatech/ct-2.jpg", alt: "Colombia Tech Fest", shape: "landscape" },
     ],
   },
   {
@@ -169,13 +175,13 @@ export const jobs: Job[] = [
         name: "TuVetia",
         description:
           "Plataforma multi-tenant con capa agéntica y pagos por suscripción, llevada a producción.",
-        photo: { src: "/images/work/plogy/01-code.jpg", alt: "TuVetia" },
+        photo: { src: "/images/work/plogy/tuvetia.png", alt: "TuVetia", position: "left top" },
       },
     ],
+    cover: { src: "/images/work/plogy/plogy-1.jpg", alt: "Plogy" },
     photos: [
-      { src: "/images/work/plogy/01-code.jpg", alt: "Código", shape: "landscape" },
-      { src: "/images/work/plogy/02-vet.jpg", alt: "Producto", shape: "landscape" },
-      { src: "/images/work/plogy/03-team.jpg", alt: "Equipo", shape: "landscape" },
+      { src: "/images/work/plogy/plogy-1.jpg", alt: "Plogy", shape: "landscape" },
+      { src: "/images/work/plogy/plogy-2.jpg", alt: "Equipo de Plogy", shape: "landscape" },
     ],
   },
   {
@@ -193,11 +199,8 @@ export const jobs: Job[] = [
     ],
     stack: ["Microsoft 365", "Excel", "Teams", "SharePoint", "Outlook"],
     projects: [],
-    photos: [
-      { src: "/images/work/bbraun/01-office.jpg", alt: "Oficina", shape: "landscape" },
-      { src: "/images/work/bbraun/02-lab.jpg", alt: "Laboratorio", shape: "landscape" },
-      { src: "/images/work/bbraun/03-desk.jpg", alt: "Escritorio", shape: "landscape" },
-    ],
+    cover: { src: "/images/work/bbraun/bbraun-1.png", alt: "B. Braun", fit: "contain", bg: "#01a87a" },
+    photos: [{ src: "/images/work/bbraun/bbraun-1.png", alt: "B. Braun", shape: "landscape" }],
   },
 ];
 
@@ -263,17 +266,14 @@ export const about = {
     { src: "/images/about/04-mountains.jpg", alt: "Montañas", shape: "landscape" },
     { src: "/images/about/05-coffee.jpg", alt: "Finca", shape: "big" },
     { src: "/images/about/03-workspace.jpg", alt: "Escritorio", shape: "portrait" },
-    { src: "/images/about/06-sunset.jpg", alt: "Atardecer", shape: "landscape" },
-    { src: "/images/me/03-countryside.jpg", alt: "Campo", shape: "landscape" },
+    { src: "/images/about/06-sunset.jpg", alt: "Atardecer", shape: "big" },
   ] satisfies Photo[],
 };
 
 export const contact = [
-  // TODO: reemplaza con tu perfil de LinkedIn
-  { label: "LinkedIn", href: "https://www.linkedin.com/" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/santiago-tllz" },
   { label: "GitHub", href: "https://github.com/santiagotllrz" },
-  // TODO: reemplaza con tu email
-  { label: "Email", href: "mailto:tu@email.com" },
+  { label: "Email", href: "mailto:santiagotllrz@gmail.com" },
 ] as const;
 
 export const nav = [
