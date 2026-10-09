@@ -1,26 +1,463 @@
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import "lenis/dist/lenis.css";
 
 @theme inline {
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-host-grotesk);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+  --color-rule: var(--rule);
 }
 
-@media (prefers-color-scheme: dark) {
+:root {
+  --background: #f9f9f9;
+  --foreground: #171717;
+  --accent: #e4ff02;
+  --muted: color-mix(in oklab, var(--foreground) 62%, transparent);
+  --rule: color-mix(in oklab, var(--foreground) 15%, transparent);
+  --margin: 1rem;
+  --gutter: 1rem;
+  --ease-expo: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+@media (min-width: 64rem) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --margin: 1.25rem;
+    --gutter: 1.25rem;
   }
+}
+
+@utility page-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  padding-inline: var(--margin);
+}
+
+@utility page-x {
+  padding-inline: var(--margin);
+}
+
+html {
+  background: var(--background);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--foreground);
+}
+
+body:has(dialog[open]) {
+  overflow: hidden;
+}
+
+/* ---------- Peek header ---------- */
+
+.peek-header {
+  transform: translateY(-100%);
+  transition: transform 0.16s ease-in;
+}
+.peek-header[data-shown] {
+  transform: none;
+  transition: transform 0.22s var(--ease-expo);
+}
+.peek-header[data-near] {
+  transition: none;
+}
+.peek-header::after {
+  content: "";
+  position: absolute;
+  inset: 100% 0 auto;
+  height: 1.5rem;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in oklab, var(--foreground) 6%, transparent),
+    transparent
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.peek-header[data-shown]:not([data-near])::after {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .peek-header {
+    transform: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.16s, visibility 0s 0.16s;
+  }
+  .peek-header[data-shown] {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.16s;
+  }
+  .peek-header[data-near] {
+    transition: none;
+  }
+}
+
+/* ---------- Scramble text ---------- */
+
+@media (hover: hover) and (pointer: fine) {
+  [data-scramble] {
+    cursor: crosshair;
+  }
+}
+[data-w] > [data-alt] {
+  display: none;
+}
+[data-w][data-alt-on] > [data-alt] {
+  display: inline;
+}
+[data-w][data-alt-on] > [data-core] {
+  display: none;
+}
+[data-char][data-hit] {
+  background: var(--accent);
+  color: var(--foreground);
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  --out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes hero-up {
+  from {
+    transform: translateY(110%);
+  }
+}
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+@keyframes hero-fade {
+  from {
+    opacity: 0;
+  }
+}
+.hero[data-state="intro"] [data-mask] {
+  clip-path: inset(0 -0.2em);
+}
+.hero[data-state="intro"] [data-word] {
+  animation: hero-up 0.8s var(--out-quint) both;
+  animation-delay: var(--at);
+}
+.hero[data-state="intro"] [data-slot-inner] {
+  animation: hero-up 0.9s var(--out-quint) both;
+  animation-delay: 0.35s;
+}
+.hero[data-state="intro"] header a {
+  animation: hero-rise 0.6s var(--out-quint) both;
+  animation-delay: calc(0.55s + var(--i, 0) * 30ms);
+}
+.hero[data-state="intro"] header nav a:nth-child(1) { --i: 1; }
+.hero[data-state="intro"] header nav a:nth-child(2) { --i: 2; }
+.hero[data-state="intro"] header nav a:nth-child(3) { --i: 3; }
+.hero[data-state="intro"] header nav a:nth-child(4) { --i: 4; }
+.hero[data-state="intro"] [data-enter="intro"] {
+  animation: hero-fade 0.3s 0.63s both;
+}
+.hero[data-state="intro"] [data-enter="arrow"] {
+  animation: hero-fade 0.5s 0.8s both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero[data-state="intro"] [data-word],
+  .hero[data-state="intro"] [data-slot-inner] {
+    animation: hero-fade 0.5s both;
+  }
+  .hero[data-state="intro"] header a,
+  .hero[data-state="intro"] [data-enter] {
+    animation: hero-fade 0.4s 0.2s both;
+  }
+}
+
+/* ---------- Scroll reveal ---------- */
+
+:root {
+  --rv-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes rv-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes rv-word {
+  from {
+    transform: translateY(135%);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes rv-mask {
+  0%,
+  100% {
+    clip-path: inset(0 -0.2em -0.25em);
+  }
+}
+@keyframes rv-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes rv-drift {
+  from {
+    transform: translateY(-6%);
+  }
+  to {
+    transform: translateY(6%);
+  }
+}
+[data-reveal] :is(.rv-rise, .rv-mask, .rv-word, .rv-img > img) {
+  --rv-delay: calc(var(--i, 0) * var(--rv-step, 60ms) + var(--d, 0s));
+}
+[data-reveal] .rv-rise {
+  opacity: 0;
+}
+[data-reveal] .rv-mask {
+  clip-path: inset(0 -0.2em -0.25em);
+}
+[data-reveal] .rv-word {
+  transform: translateY(135%);
+}
+[data-reveal] .rv-img > img {
+  opacity: 0;
+}
+[data-reveal][data-in] .rv-rise {
+  animation: rv-rise 0.7s var(--rv-ease) both;
+  animation-delay: var(--rv-delay);
+}
+[data-reveal][data-in] .rv-mask {
+  clip-path: none;
+  animation: rv-mask var(--rv-word-ms, 0.9s) linear backwards;
+  animation-delay: var(--rv-delay);
+}
+[data-reveal][data-in] .rv-word {
+  animation: rv-word var(--rv-word-ms, 0.9s) var(--rv-ease) both;
+  animation-delay: var(--rv-delay);
+}
+[data-reveal][data-in] .rv-img > img {
+  animation: rv-fade 0.8s both;
+  animation-delay: var(--rv-delay);
+}
+[data-reveal] .rv-lines:not([data-split]) {
+  visibility: hidden;
+}
+[data-reveal] .rv-lines[data-settled] .rv-mask {
+  clip-path: none;
+  animation: none;
+}
+[data-reveal] .rv-lines[data-settled] .rv-word {
+  animation: none;
+  transform: none;
+}
+@supports (animation-timeline: view()) {
+  .rv-parallax {
+    animation: rv-drift linear both;
+    animation-timeline: view();
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] .rv-mask {
+    clip-path: none;
+    animation: none;
+  }
+  [data-reveal] :is(.rv-rise, .rv-word) {
+    opacity: 0;
+    transform: none;
+  }
+  [data-reveal][data-in] :is(.rv-rise, .rv-word, .rv-img > img) {
+    animation: rv-fade 0.3s both;
+  }
+  .rv-parallax {
+    animation: none;
+  }
+}
+@media (scripting: none) {
+  [data-reveal] :is(.rv-mask, .rv-rise, .rv-word, .rv-img > img) {
+    opacity: 1;
+    clip-path: none;
+    transform: none;
+  }
+  [data-reveal] .rv-lines:not([data-split]) {
+    visibility: visible;
+  }
+}
+
+/* ---------- Work poster ---------- */
+
+@keyframes poster-rise {
+  from {
+    transform: translateY(115%);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes poster-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.poster-rise .poster-link {
+  transform: translateY(115%);
+}
+.poster-rise .poster-caption {
+  opacity: 0;
+}
+.poster-rise[data-in] .poster-link {
+  animation: poster-rise 0.8s var(--ease-expo) both;
+  animation-delay: calc(var(--i, 0) * 60ms);
+}
+.poster-rise[data-in] .poster-caption {
+  animation: poster-fade 0.4s both;
+  animation-delay: calc(var(--i, 0) * 60ms + 0.2s);
+}
+.poster-rule {
+  position: absolute;
+  inset: auto 0 -0.14em;
+  height: 2px;
+  background: color-mix(in oklab, currentColor 35%, transparent);
+}
+.poster-rule::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: 0;
+  transition: transform 0.32s var(--ease-expo);
+}
+.poster-link[data-active="true"] .poster-rule::after {
+  transform: scaleX(1);
+}
+.poster-arrow {
+  display: inline-block;
+  opacity: 0;
+  transform: translate(-0.15em, 0.15em);
+  transition: opacity 0.16s, transform 0.32s var(--ease-expo);
+}
+.poster-link[data-active="true"] .poster-arrow {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .poster-rise .poster-link {
+    transform: none;
+  }
+  .poster-rise[data-in] .poster-link {
+    animation: poster-fade 0.3s both;
+  }
+  .poster-rule::after,
+  .poster-arrow {
+    transform: none;
+    transition: opacity 0.16s;
+  }
+}
+
+/* ---------- Work pages ---------- */
+
+@keyframes work-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+    filter: blur(2px);
+  }
+}
+@keyframes work-reveal-up {
+  from {
+    clip-path: inset(100% 0 0);
+  }
+}
+@keyframes work-settle {
+  from {
+    transform: scale(1.08);
+  }
+}
+@keyframes work-fade {
+  from {
+    opacity: 0;
+  }
+}
+.work-in {
+  animation: work-in 0.45s var(--ease-expo) backwards;
+  animation-delay: calc(var(--i, 0) * 35ms);
+}
+.work-reveal {
+  animation: work-reveal-up 0.8s var(--ease-expo) backwards;
+  animation-delay: calc(min(var(--i, 0), 5) * 70ms);
+}
+.work-reveal > img {
+  animation: work-settle 1s var(--ease-expo) backwards;
+  animation-delay: inherit;
+}
+@media (prefers-reduced-motion: reduce) {
+  .work-in,
+  .work-reveal {
+    animation: work-fade 0.2s backwards;
+  }
+  .work-reveal > img {
+    animation: none;
+  }
+}
+
+/* Row link with accent rule (work index) */
+.row-link .poster-rule {
+  background: var(--rule);
+  height: 1px;
+  bottom: 0;
+}
+.row-link:hover .poster-rule::after,
+.row-link:focus-visible .poster-rule::after {
+  transform: scaleX(1);
+}
+.row-link:hover .poster-arrow,
+.row-link:focus-visible .poster-arrow {
+  opacity: 1;
+  transform: none;
+}
+
+@media print {
+  @page {
+    margin: 14mm;
+  }
+  :root {
+    --margin: 0px;
+    --gutter: 1rem;
+  }
+  body {
+    background: #fff;
+  }
+  [data-reveal] :is(.rv-mask, .rv-rise, .rv-word, .rv-img > img) {
+    opacity: 1;
+    clip-path: none;
+    animation: none;
+    transform: none;
+  }
+  [data-reveal] .rv-lines:not([data-split]) {
+    visibility: visible;
+  }
 }
