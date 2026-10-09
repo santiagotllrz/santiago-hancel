@@ -62,7 +62,7 @@ export const site = {
    * a su emoji al pasar el cursor por encima.
    */
   intro:
-    "Soy AI product & software engineer. Construyo software y productos con [IA|🤖] y [agentes|🦾], y me encanta estar en todo el proceso de creación, siempre en modo [fundador|🚀] con todo lo que toco. Ahora mismo estoy construyendo algo propio, en [stealth|🥷]. Cuando no estoy construyendo, me encuentras [caminando|🚶], en el [campo|🌾] o de [excursión|🥾].",
+    "Soy AI product & software engineer. Construyo software y productos con [IA|🤖] y [agentes|🦾], me encanta estar en todo el proceso de creación, siempre en modo [fundador|🚀] con todo lo que toco. Ahora mismo estoy construyendo algo propio, en [stealth|🥷]. Cuando no estoy construyendo, me encuentras [caminando|🚶], en el [campo|🌾] o de [excursión|🥾].",
 };
 
 /**
@@ -230,8 +230,7 @@ export const projects: Project[] = [
   {
     year: "26",
     name: "Índice Agro",
-    // TODO: confirma el link de Instagram
-    href: "https://www.instagram.com/indiceagro",
+    href: "https://www.instagram.com/indiceagro.co/",
     description: "Comunidad sobre el agro colombiano en Instagram.",
     category: "Comunidad",
   },
