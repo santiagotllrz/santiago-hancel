@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SiteHeader } from "@/components/site-header";
+import { Icon } from "@/components/icon";
 
 export default function NotFound() {
   return (
@@ -15,7 +16,7 @@ export default function NotFound() {
           href="/"
           className="work-in col-span-12 w-fit text-xs font-medium tracking-[0.08em] uppercase hover:bg-accent hover:text-accent-foreground"
         >
-          Volver al inicio <span aria-hidden="true">→</span>
+          Volver al inicio <Icon name="right" />
         </Link>
       </main>
     </>

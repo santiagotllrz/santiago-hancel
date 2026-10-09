@@ -4,6 +4,7 @@ import { PhotoFill } from "@/components/photo-fill";
 import { ContactSection } from "@/components/sections";
 import { SiteHeader } from "@/components/site-header";
 import { jobs } from "@/lib/data";
+import { Icon } from "@/components/icon";
 
 export const metadata: Metadata = {
   title: "Work",
@@ -56,7 +57,7 @@ export default function WorkIndex() {
                   <span className="col-span-10 flex items-baseline gap-2 font-display text-[clamp(2rem,5vw,4.5rem)] leading-none font-semibold tracking-[-0.03em] md:col-span-6">
                     {job.company}
                     <span aria-hidden="true" className="poster-arrow text-[0.6em]">
-                      ↗
+                      <Icon name="up-right" className="size-[1em]" />
                     </span>
                   </span>
                   <span className="col-span-10 col-start-3 flex flex-col gap-1 md:col-span-2 md:col-start-auto">

@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { Gallery } from "@/components/gallery";
 import { SiteHeader } from "@/components/site-header";
 import { jobs } from "@/lib/data";
+import { Icon } from "@/components/icon";
 
 const i = (n: number) => ({ "--i": n }) as React.CSSProperties;
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -152,7 +153,7 @@ export default async function WorkPage(props: PageProps<"/work/[slug]">) {
                         <h3 className="font-display text-xl font-semibold tracking-[-0.02em]">
                           {p.href ? (
                             <a href={p.href} target="_blank" rel="noopener noreferrer" className="hover:bg-accent hover:text-accent-foreground">
-                              {p.name} <span aria-hidden="true">↗</span>
+                              {p.name} <Icon name="up-right" />
                             </a>
                           ) : (
                             p.name
@@ -173,7 +174,7 @@ export default async function WorkPage(props: PageProps<"/work/[slug]">) {
             href={`/work/${prev.slug}`}
             className="rv-rise group col-span-6 flex flex-col gap-2 outline-none"
           >
-            <span className="text-xs font-medium tracking-[0.08em] uppercase text-muted">← Anterior</span>
+            <span className="text-xs font-medium tracking-[0.08em] uppercase text-muted"><Icon name="left" /> Anterior</span>
             <span className="font-display text-[clamp(1.75rem,3.6vw,3.75rem)] leading-none font-semibold tracking-[-0.03em] transition-colors duration-150 group-hover:bg-accent group-hover:text-accent-foreground group-focus-visible:underline w-fit">
               {prev.company}
             </span>
@@ -183,7 +184,7 @@ export default async function WorkPage(props: PageProps<"/work/[slug]">) {
             className="rv-rise group col-span-6 flex flex-col items-end gap-2 text-right outline-none"
             style={i(1)}
           >
-            <span className="text-xs font-medium tracking-[0.08em] uppercase text-muted">Siguiente →</span>
+            <span className="text-xs font-medium tracking-[0.08em] uppercase text-muted">Siguiente <Icon name="right" /></span>
             <span className="font-display text-[clamp(1.75rem,3.6vw,3.75rem)] leading-none font-semibold tracking-[-0.03em] transition-colors duration-150 group-hover:bg-accent group-hover:text-accent-foreground group-focus-visible:underline w-fit">
               {next.company}
             </span>

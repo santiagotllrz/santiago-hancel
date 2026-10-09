@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { Project } from "@/lib/data";
+import { Icon } from "./icon";
 
 const cell =
   "min-w-0 border-rule border-b py-1.5 [overflow-wrap:anywhere] md:truncate md:py-1 md:[overflow-wrap:normal] rv-rise";
@@ -53,7 +54,7 @@ export function ProjectsList({ projects }: { projects: Project[] }) {
                       rel="noopener noreferrer"
                       className="w-fit text-xs font-medium tracking-[0.08em] uppercase transition-colors duration-150 hover:bg-accent hover:text-accent-foreground"
                     >
-                      Visitar <span aria-hidden="true">↗</span>
+                      Visitar <Icon name="up-right" />
                     </a>
                   </div>
                 </div>

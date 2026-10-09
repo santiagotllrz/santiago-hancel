@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useRef, useState } from "react";
 import type { Photo } from "@/lib/data";
+import { Icon } from "./icon";
 
 /**
  * A single row of horizontally scrolling photos with a full-screen lightbox.
@@ -46,7 +47,7 @@ export function Gallery({ photos }: { photos: Photo[] }) {
             </div>
             <figcaption className="flex justify-between text-xs font-medium tracking-[0.08em] uppercase">
               <span>{open.alt}</span>
-              <span className="text-muted">Cerrar ✕</span>
+              <span className="text-muted">Cerrar <Icon name="close" /></span>
             </figcaption>
           </figure>
         )}

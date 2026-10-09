@@ -5,13 +5,14 @@ import { useEffect, useState } from "react";
 import { heroImages, site } from "@/lib/data";
 import { ScrambleText, ScrambleWord } from "./scramble";
 import { SiteHeader } from "./site-header";
+import { Icon } from "./icon";
 
 /** The rotating photo window that sits inside the name. */
 function Slot({ frame, className }: { frame: number; className: string }) {
   return (
     <span
       aria-hidden="true"
-      className={`relative ml-[0.06em] h-[0.7em] w-[1.07em] overflow-hidden ${className}`}
+      className={`relative overflow-hidden ${className}`}
     >
       <span data-slot-inner="true" className="absolute inset-0 bg-foreground/5">
         {heroImages.map((img, i) => (
@@ -64,14 +65,14 @@ export function Hero() {
               <ScrambleWord text={site.firstName} align="right" />
             </span>
           </span>
-          <Slot frame={frame} className="hidden md:inline-block" />
+          <Slot frame={frame} className="ml-[0.06em] hidden h-[0.7em] w-[1.07em] md:inline-block" />
           <br className="md:hidden" />
           <span data-mask="true" className="inline-block md:ml-[0.06em]">
             <span data-word="true" className="inline-block" style={{ "--at": "160ms" } as React.CSSProperties}>
               <ScrambleWord text={site.lastName} align="left" />
             </span>
           </span>
-          <Slot frame={frame} className="top-[0.38em] ml-[0.1em] inline-block md:hidden" />
+          <Slot frame={frame} className="top-[0.42em] ml-[0.2em] inline-block h-[0.9em] w-[1.34em] md:hidden" />
         </h1>
       </div>
 
@@ -86,7 +87,7 @@ export function Hero() {
           data-enter="arrow"
           className="col-start-12 text-right text-sm font-medium text-muted"
         >
-          ↓
+          <Icon name="down" />
         </span>
       </footer>
     </section>

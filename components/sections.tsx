@@ -4,6 +4,7 @@ import { ContactGrid } from "./contact-grid";
 import { Lines } from "./lines";
 import { ProjectsList } from "./projects-list";
 import { ScrambleWord } from "./scramble";
+import { Icon } from "./icon";
 
 const i = (n: number) => ({ "--i": n }) as React.CSSProperties;
 
@@ -65,7 +66,7 @@ export function AboutPreview() {
           style={i(6)}
           className="rv-rise w-fit text-xs font-medium tracking-[0.08em] uppercase transition-colors duration-150 hover:bg-accent hover:text-accent-foreground"
         >
-          Leer más <span aria-hidden="true">→</span>
+          Leer más <Icon name="right" />
         </Link>
       </div>
     </section>

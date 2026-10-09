@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import type { Job } from "@/lib/data";
 import { PhotoFill } from "./photo-fill";
+import { Icon } from "./icon";
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
@@ -61,7 +62,7 @@ export function WorkPoster({ jobs }: { jobs: Job[] }) {
                 &apos;{j.short}
               </span>
               <span aria-hidden="true" className="poster-arrow text-[0.6em]">
-                ↗
+                <Icon name="up-right" className="size-[1em]" />
               </span>
               <span aria-hidden="true" className="poster-rule" />
             </Link>
