@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Gallery } from "@/components/gallery";
 import { Lines } from "@/components/lines";
 import { ContactSection } from "@/components/sections";
 import { SiteHeader } from "@/components/site-header";
@@ -51,13 +50,6 @@ export default function AboutPage() {
               </p>
             ))}
           </div>
-        </section>
-
-        <section aria-label="Fotos" className="flex flex-col gap-4">
-          <p className="page-x text-xs font-medium tracking-[0.08em] uppercase text-muted">
-            Fuera del trabajo
-          </p>
-          <Gallery photos={about.photos} layout="grid" />
         </section>
 
         <ContactSection />

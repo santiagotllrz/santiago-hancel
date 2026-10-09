@@ -4,8 +4,10 @@
 export type Photo = {
   src: string;
   alt: string;
-  /** "portrait" ocupa dos filas en las tiras de fotos, "landscape" dos columnas. */
-  shape?: "landscape" | "portrait" | "big";
+  /** Forma en la galería de cada trabajo. */
+  shape?: "landscape" | "portrait";
+  /** Muestra la foto en blanco y negro. */
+  gray?: boolean;
   /** "contain" muestra la imagen completa sobre el color `bg` (útil para logos). */
   fit?: "cover" | "contain";
   bg?: string;
@@ -69,10 +71,23 @@ export const site = {
  */
 export const heroImages: { src: string; ms: number }[] = [
   { src: "/images/me/santiago.jpg", ms: 2600 },
-  { src: "/images/work/colombiatech/ct-1.jpg", ms: 900 },
-  { src: "/images/work/colombiatech/ct-2.jpg", ms: 900 },
-  { src: "/images/work/plogy/plogy-1.jpg", ms: 900 },
-  { src: "/images/work/plogy/plogy-2.jpg", ms: 900 },
+  ...[
+    "/images/home/home-04.jpg",
+    "/images/work/colombiatech/ct-1.jpg",
+    "/images/home/home-01.jpg",
+    "/images/home/home-07.jpg",
+    "/images/work/plogy/plogy-2.jpg",
+    "/images/home/home-02.jpg",
+    "/images/home/home-05.jpg",
+    "/images/work/colombiatech/ct-2.jpg",
+    "/images/home/home-06.jpg",
+    "/images/home/home-03.jpg",
+    "/images/work/plogy/plogy-1.jpg",
+    "/images/home/home-10.jpg",
+    "/images/home/home-08.jpg",
+    "/images/home/home-11.jpg",
+    "/images/home/home-09.jpg",
+  ].map((src) => ({ src, ms: 900 })),
 ];
 
 export const jobs: Job[] = [
@@ -178,7 +193,7 @@ export const jobs: Job[] = [
         photo: { src: "/images/work/plogy/tuvetia.png", alt: "TuVetia", position: "left top" },
       },
     ],
-    cover: { src: "/images/work/plogy/plogy-1.jpg", alt: "Plogy" },
+    cover: { src: "/images/work/plogy/plogy-1.jpg", alt: "Plogy", gray: true },
     photos: [
       { src: "/images/work/plogy/plogy-1.jpg", alt: "Plogy", shape: "landscape" },
       { src: "/images/work/plogy/plogy-2.jpg", alt: "Equipo de Plogy", shape: "landscape" },
@@ -260,14 +275,6 @@ export const about = {
     "Ahora estoy construyendo un proyecto propio, todavía en stealth. En los lugares donde he trabajado siempre terminé involucrándome en el producto más allá de mi rol, así que tenía sentido intentarlo por mi cuenta.",
     "Fuera del trabajo me gusta caminar, salir al campo y hacer excursiones.",
   ],
-  photos: [
-    { src: "/images/about/01-trail.jpg", alt: "Sendero", shape: "portrait" },
-    { src: "/images/about/02-field.jpg", alt: "Campo", shape: "landscape" },
-    { src: "/images/about/04-mountains.jpg", alt: "Montañas", shape: "landscape" },
-    { src: "/images/about/05-coffee.jpg", alt: "Finca", shape: "big" },
-    { src: "/images/about/03-workspace.jpg", alt: "Escritorio", shape: "portrait" },
-    { src: "/images/about/06-sunset.jpg", alt: "Atardecer", shape: "big" },
-  ] satisfies Photo[],
 };
 
 export const contact = [

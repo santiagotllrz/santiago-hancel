@@ -33,7 +33,7 @@ const ICONS: Record<string, ReactNode> = {
 const COLORS: Record<string, { bg: string; fg: string }> = {
   LinkedIn: { bg: "#0a66c2", fg: "#fff" },
   GitHub: { bg: "#24292f", fg: "#fff" },
-  Email: { bg: "var(--accent)", fg: "var(--foreground)" },
+  Email: { bg: "var(--accent)", fg: "var(--accent-foreground)" },
 };
 
 function nearestEdge(e: React.PointerEvent, el: HTMLElement): Edge {

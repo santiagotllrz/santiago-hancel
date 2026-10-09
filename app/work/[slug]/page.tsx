@@ -77,7 +77,7 @@ export default async function WorkPage(props: PageProps<"/work/[slug]">) {
         </section>
 
         <section aria-label="Galería">
-          <Gallery photos={job.photos} layout="strip" />
+          <Gallery photos={job.photos} />
         </section>
 
         <section className="page-grid gap-y-16">
@@ -151,7 +151,7 @@ export default async function WorkPage(props: PageProps<"/work/[slug]">) {
                       <div className="flex flex-col gap-1">
                         <h3 className="font-display text-xl font-semibold tracking-[-0.02em]">
                           {p.href ? (
-                            <a href={p.href} target="_blank" rel="noopener noreferrer" className="hover:bg-accent">
+                            <a href={p.href} target="_blank" rel="noopener noreferrer" className="hover:bg-accent hover:text-accent-foreground">
                               {p.name} <span aria-hidden="true">↗</span>
                             </a>
                           ) : (
@@ -174,7 +174,7 @@ export default async function WorkPage(props: PageProps<"/work/[slug]">) {
             className="rv-rise group col-span-6 flex flex-col gap-2 outline-none"
           >
             <span className="text-xs font-medium tracking-[0.08em] uppercase text-muted">← Anterior</span>
-            <span className="font-display text-[clamp(1.75rem,3.6vw,3.75rem)] leading-none font-semibold tracking-[-0.03em] transition-colors duration-150 group-hover:bg-accent group-focus-visible:underline w-fit">
+            <span className="font-display text-[clamp(1.75rem,3.6vw,3.75rem)] leading-none font-semibold tracking-[-0.03em] transition-colors duration-150 group-hover:bg-accent group-hover:text-accent-foreground group-focus-visible:underline w-fit">
               {prev.company}
             </span>
           </Link>
@@ -184,7 +184,7 @@ export default async function WorkPage(props: PageProps<"/work/[slug]">) {
             style={i(1)}
           >
             <span className="text-xs font-medium tracking-[0.08em] uppercase text-muted">Siguiente →</span>
-            <span className="font-display text-[clamp(1.75rem,3.6vw,3.75rem)] leading-none font-semibold tracking-[-0.03em] transition-colors duration-150 group-hover:bg-accent group-focus-visible:underline w-fit">
+            <span className="font-display text-[clamp(1.75rem,3.6vw,3.75rem)] leading-none font-semibold tracking-[-0.03em] transition-colors duration-150 group-hover:bg-accent group-hover:text-accent-foreground group-focus-visible:underline w-fit">
               {next.company}
             </span>
           </Link>

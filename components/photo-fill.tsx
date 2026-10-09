@@ -14,6 +14,7 @@ export function PhotoFill({
   sizes: string;
   className?: string;
 }) {
+  if (photo.gray) className = `grayscale ${className}`;
   if (photo.fit === "contain") {
     return (
       <div className={`absolute inset-0 ${className}`} style={{ background: photo.bg }}>

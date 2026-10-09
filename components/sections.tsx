@@ -53,7 +53,7 @@ export function ProjectsSection() {
                 href={p.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`${cell} col-span-10 transition-colors duration-150 hover:bg-accent md:col-span-3`}
+                className={`${cell} col-span-10 transition-colors duration-150 hover:bg-accent hover:text-accent-foreground md:col-span-3`}
               >
                 {p.name}
               </a>
@@ -81,7 +81,7 @@ export function AboutPreview() {
         <Link
           href="/about"
           style={i(6)}
-          className="rv-rise w-fit text-xs font-medium tracking-[0.08em] uppercase transition-colors duration-150 hover:bg-accent"
+          className="rv-rise w-fit text-xs font-medium tracking-[0.08em] uppercase transition-colors duration-150 hover:bg-accent hover:text-accent-foreground"
         >
           Leer más <span aria-hidden="true">→</span>
         </Link>

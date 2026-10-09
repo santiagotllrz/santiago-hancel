@@ -71,7 +71,7 @@ export function Hero() {
               <ScrambleWord text={site.lastName} align="left" />
             </span>
           </span>
-          <Slot frame={frame} className="inline-block md:hidden" />
+          <Slot frame={frame} className="top-[0.38em] ml-[0.1em] inline-block md:hidden" />
         </h1>
       </div>
 

@@ -13,7 +13,7 @@ export default function NotFound() {
         </h1>
         <Link
           href="/"
-          className="work-in col-span-12 w-fit text-xs font-medium tracking-[0.08em] uppercase hover:bg-accent"
+          className="work-in col-span-12 w-fit text-xs font-medium tracking-[0.08em] uppercase hover:bg-accent hover:text-accent-foreground"
         >
           Volver al inicio <span aria-hidden="true">→</span>
         </Link>
