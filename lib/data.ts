@@ -271,6 +271,7 @@ export const about = {
   paragraphs: [
     "Hola, soy Santiago. Soy software & product AI engineer y construyo productos con IA. La mayor parte de mi experiencia ha sido en startups, trabajando cerca de producto y de los equipos fundadores, aunque también he hecho trabajo independiente. Empecé en el mundo corporativo, pero rápidamente me di cuenta de que no era lo mío.",
     "Me encanta automatizar todo. Desde que jugaba Minecraft armaba mis propias granjas automáticas; ahora hago lo mismo en el mundo real.",
+    "Estoy en octavo semestre de Ingeniería de Sistemas y recientemente me gradué de Makers como Makers Coding Fellow, cohorte 2026-2.",
     "Ahora estoy construyendo un proyecto propio, todavía en stealth. En los lugares donde he trabajado siempre terminé involucrándome en el producto más allá de mi rol, así que tenía sentido intentarlo por mi cuenta.",
     "Fuera del trabajo me gusta caminar, salir al campo y hacer excursiones.",
   ],
