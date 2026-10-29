@@ -224,14 +224,14 @@ export const projects: Project[] = [
     year: "26",
     name: "usesandia.com",
     href: "https://usesandia.com",
-    description: "Infraestructura de datos y AI para el agro",
+    description: "Infraestructura de datos y AI para el agro.",
     category: "Agtech",
   },
   {
     year: "26",
     name: "Índice Agro",
     href: "https://www.instagram.com/indiceagro.co/",
-    description: "Medio sobre agricultura en Colombia. Impulsado con AI y los agents de Hancel Content. +40 mil seguidores en redes logrados en un mes y +4 millones de visualizaciones",
+    description: "Medio sobre agricultura en Colombia. Impulsado con AI y los agentes de Hancel Content. +40 mil seguidores en redes logrados en solo un mes y +8 millones de visualizaciones.",
     category: "Comunidad y media",
   },
   {
