@@ -418,7 +418,7 @@ body:has(dialog[open]) {
   animation: work-reveal-up 0.8s var(--ease-expo) backwards;
   animation-delay: calc(min(var(--i, 0), 5) * 70ms);
 }
-.work-reveal > img {
+.work-reveal > :is(img, video) {
   animation: work-settle 1s var(--ease-expo) backwards;
   animation-delay: inherit;
 }
@@ -427,7 +427,7 @@ body:has(dialog[open]) {
   .work-reveal {
     animation: work-fade 0.2s backwards;
   }
-  .work-reveal > img {
+  .work-reveal > :is(img, video) {
     animation: none;
   }
 }

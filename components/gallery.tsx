@@ -5,8 +5,23 @@ import { useRef, useState } from "react";
 import type { Photo } from "@/lib/data";
 import { Icon } from "./icon";
 
+function shapeClass(shape?: Photo["shape"]) {
+  switch (shape) {
+    case "portrait":
+      return "aspect-[4/5]";
+    case "square":
+      return "aspect-square";
+    case "phone":
+      return "aspect-[9/16]";
+    case "screen":
+      return "aspect-[16/9]";
+    default:
+      return "aspect-[3/2]";
+  }
+}
+
 /**
- * A single row of horizontally scrolling photos with a full-screen lightbox.
+ * A single row of horizontally scrolling photos/videos with a full-screen lightbox.
  */
 export function Gallery({ photos }: { photos: Photo[] }) {
   const dialog = useRef<HTMLDialogElement>(null);
@@ -24,9 +39,7 @@ export function Gallery({ photos }: { photos: Photo[] }) {
           {photos.map((p, i) => (
             <li
               key={p.src + i}
-              className={`h-[var(--strip-h)] shrink-0 snap-start ${
-                p.shape === "portrait" ? "aspect-[4/5]" : "aspect-[3/2]"
-              }`}
+              className={`h-[var(--strip-h)] shrink-0 snap-start ${shapeClass(p.shape)}`}
             >
               <Thumb photo={p} index={i} onOpen={show} sizes="(min-width: 768px) 50vw, 90vw" />
             </li>
@@ -42,12 +55,25 @@ export function Gallery({ photos }: { photos: Photo[] }) {
       >
         {open && (
           <figure className="relative flex h-full w-full flex-col gap-3">
-            <div className="relative min-h-0 flex-1">
-              <Image src={open.src} alt={open.alt} fill sizes="100vw" className="object-contain" />
+            <div className="relative flex min-h-0 flex-1 items-center justify-center">
+              {open.video ? (
+                <video
+                  src={open.src}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="max-h-full max-w-full object-contain"
+                />
+              ) : (
+                <Image src={open.src} alt={open.alt} fill sizes="100vw" className="object-contain" />
+              )}
             </div>
             <figcaption className="flex justify-between text-xs font-medium tracking-[0.08em] uppercase">
               <span>{open.alt}</span>
-              <span className="text-muted">Cerrar <Icon name="close" /></span>
+              <span className="text-muted">
+                Cerrar <Icon name="close" />
+              </span>
             </figcaption>
           </figure>
         )}
@@ -72,16 +98,27 @@ function Thumb({
       type="button"
       onClick={() => onOpen(photo)}
       aria-label={`Ampliar: ${photo.alt}`}
-      className="work-reveal group relative block h-full w-full cursor-zoom-in overflow-hidden bg-foreground/5"
+      className="work-reveal group relative block h-full w-full cursor-zoom-in overflow-hidden border border-rule bg-foreground/5"
       style={{ "--i": index } as React.CSSProperties}
     >
-      <Image
-        src={photo.src}
-        alt={photo.alt}
-        fill
-        sizes={sizes}
-        className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-      />
+      {photo.video ? (
+        <video
+          src={photo.src}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+        />
+      ) : (
+        <Image
+          src={photo.src}
+          alt={photo.alt}
+          fill
+          sizes={sizes}
+          className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+        />
+      )}
     </button>
   );
 }
