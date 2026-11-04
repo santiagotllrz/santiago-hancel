@@ -347,9 +347,12 @@ export const projects: Project[] = [
     photos: [
       { src: "/images/projects/indice-agro/logo.png", alt: "Índice Agro — Logo", shape: "square" },
       { src: "/images/projects/indice-agro/01-portal.png", alt: "Índice Agro — Portal web de noticias y mercado", shape: "screen" },
-      { src: "/images/projects/indice-agro/02-instagram-profile.jpg", alt: "Índice Agro — Perfil y métricas en Instagram", shape: "phone" },
-      { src: "/images/projects/indice-agro/03-instagram-feed.jpg", alt: "Índice Agro — Feed de noticias en Instagram", shape: "phone" },
-      { src: "/images/projects/indice-agro/04-facebook-profile.jpg", alt: "Índice Agro — Comunidad en Facebook", shape: "phone" },
+      { src: "/images/projects/indice-agro/02-article-top.png", alt: "Índice Agro — Artículo redactado de forma autónoma con fuentes", shape: "screen" },
+      { src: "/images/projects/indice-agro/03-article-body.png", alt: "Índice Agro — Desarrollo de noticia y sección de clima", shape: "screen" },
+      { src: "/images/projects/indice-agro/04-article-sources.png", alt: "Índice Agro — Citación de fuentes y artículos recomendados", shape: "screen" },
+      { src: "/images/projects/indice-agro/05-instagram-profile.jpg", alt: "Índice Agro — Perfil y métricas en Instagram", shape: "phone" },
+      { src: "/images/projects/indice-agro/06-instagram-feed.jpg", alt: "Índice Agro — Feed de noticias en Instagram", shape: "phone" },
+      { src: "/images/projects/indice-agro/07-facebook-profile.jpg", alt: "Índice Agro — Comunidad en Facebook", shape: "phone" },
     ],
   },
   {
